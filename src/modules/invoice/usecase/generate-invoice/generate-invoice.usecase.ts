@@ -1,6 +1,6 @@
+import Address from "../../../@shared/domain/value-object/address.value-object";
 import Id from "../../../@shared/domain/value-object/id.value-object";
 import UseCaseInterface from "../../../@shared/usecase/use-case.interface";
-import Address from "../../domain/address.value-object";
 import Invoice from "../../domain/invoice.entity";
 import Product from "../../domain/product.entity";
 import InvoiceGateway from "../../gateway/invoice.gateway";

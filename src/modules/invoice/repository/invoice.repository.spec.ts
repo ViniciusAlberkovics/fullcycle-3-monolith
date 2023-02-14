@@ -5,7 +5,7 @@ import ProductModel from "./product.model";
 
 import InvoiceRepository from "./invoice.repository";
 import Invoice from "../domain/invoice.entity";
-import Address from "../domain/address.value-object";
+import Address from "../../@shared/domain/value-object/address.value-object";
 import Id from "../../@shared/domain/value-object/id.value-object";
 import Product from "../domain/product.entity";
 

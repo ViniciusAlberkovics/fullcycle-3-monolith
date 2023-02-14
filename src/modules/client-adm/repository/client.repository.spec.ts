@@ -1,5 +1,6 @@
 import { Sequelize } from "sequelize-typescript";
 import Id from "../../@shared/domain/value-object/id.value-object";
+import Address from "../../@shared/domain/value-object/address.value-object";
 import Client from "../domain/client.entity";
 import { ClientModel } from "./client.model";
 import ClientRepository from "./client.repository";
@@ -28,7 +29,8 @@ describe("ClientRepository test", () => {
       id: new Id("1"),
       name: "Client 1",
       email: "x@x.com",
-      address: "Address 1",
+      document: "any doc",
+      address: new Address('Street', 'Number', 'Comp', 'City', 'State', 'ZipCode'),
     });
 
     const repository = new ClientRepository();
@@ -40,7 +42,13 @@ describe("ClientRepository test", () => {
     expect(clientDb.id).toBe(client.id.id);
     expect(clientDb.name).toBe(client.name);
     expect(clientDb.email).toBe(client.email);
-    expect(clientDb.address).toBe(client.address);
+    expect(clientDb.document).toBe(client.document);
+    expect(clientDb.street).toEqual(client.address.street);
+    expect(clientDb.streetNumber).toEqual(client.address.number);
+    expect(clientDb.city).toEqual(client.address.city);
+    expect(clientDb.state).toEqual(client.address.state);
+    expect(clientDb.complement).toEqual(client.address.complement);
+    expect(clientDb.zipCode).toEqual(client.address.zipCode);
     expect(clientDb.createdAt).toStrictEqual(client.createdAt);
     expect(clientDb.updatedAt).toStrictEqual(client.updatedAt);
   });
@@ -50,7 +58,13 @@ describe("ClientRepository test", () => {
       id: "1",
       name: "Client 1",
       email: "x@x.com",
-      address: "Address 1",
+      document: "any doc",
+      street: "Street",
+      streetNumber: "StreetNumber",
+      city: "City",
+      state: "State",
+      complement: "Complement",
+      zipCode: "ZipCode",
       createdAt: new Date(),
       updatedAt: new Date(),
     });
@@ -61,7 +75,13 @@ describe("ClientRepository test", () => {
     expect(result.id.id).toEqual(client.id);
     expect(result.name).toEqual(client.name);
     expect(result.email).toEqual(client.email);
-    expect(result.address).toEqual(client.address);
+    expect(result.document).toEqual(client.document);
+    expect(result.address.street).toEqual(client.street);
+    expect(result.address.number).toEqual(client.streetNumber);
+    expect(result.address.city).toEqual(client.city);
+    expect(result.address.state).toEqual(client.state);
+    expect(result.address.complement).toEqual(client.complement);
+    expect(result.address.zipCode).toEqual(client.zipCode);
     expect(result.createdAt).toStrictEqual(client.createdAt);
     expect(result.updatedAt).toStrictEqual(client.updatedAt);
   });
